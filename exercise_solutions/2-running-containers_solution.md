@@ -1,6 +1,5 @@
 ---
-layout: page
-title: Running containers Solution
+# Running containers Solution
 ---
 
 To see the Docker images, type:
@@ -40,7 +39,7 @@ docker start condescending_hypatia
 and
 
 ```
-docker run -d qwan/ubuntu_base /bin/bash -c 'while true; do echo "Hello Docker"; sleep 2; done'
+docker run -d sogeti:5000/ubuntu  /bin/bash -c 'while true; do echo "Hello Docker"; sleep 2; done'
 ```
 
 Try both and explain the difference with 'docker log' and 'docker ps'.
@@ -53,7 +52,7 @@ The first one just resumes where it stopped the first time. The latter one will 
 Solution for showing MESSAGE
 
 ```
-docker run -it --rm qwan/ubuntu_base /bin/bash -c env
+docker run -it --rm sogeti:5000/ubuntu /bin/bash -c env
 ```
 
 ## Defining port forwards
@@ -61,7 +60,7 @@ docker run -it --rm qwan/ubuntu_base /bin/bash -c env
 ```
 docker run -p <host:port>:<forward port> ....
 solution
-docker run -d -p 8080:8080 qwan/helloworldapp
+docker run -d  -p 80:80 sogeti:5000/php5  /usr/sbin/apache2ctl -D FOREGROUND
 
 ```
 
@@ -81,7 +80,7 @@ Create a file 'data.txt' in the current directory with some interesting
 content. Run the container by typing (on one line):
 
 ```
-docker run -it --rm -v `pwd`/data.txt:/var/data.txt qwan/ubuntu_base /bin/bash -c 'cat /var/data.txt'
+docker run -it --rm -v `pwd`/data.txt:/var/data.txt  sogeti:5000/ubuntu /bin/bash -c 'cat /var/data.txt'
 ```
 
 _Note: the `pwd` (Print Working Directory) substitutes the absolute path of the current directory;
