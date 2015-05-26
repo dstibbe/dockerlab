@@ -1,24 +1,18 @@
 ---
-layout: page
-title: Creating images
+# Creating images
 ---
 
 ## Exercise: define an image for a web application
 
 ###Solution: Dockerfile simple_node_app
 ```
-FROM qwan/ubuntu_base
-MAINTAINER Vincent Mos
-
+FROM sogeti:5000/ubuntu
+MAINTAINER Sogeti Dev
 RUN apt-get update && apt-get install -y nodejs npm
-
 WORKDIR /opt/app
-
+EXPOSE 8099
 ADD node_modules /opt/app/node_modules
 ADD index.js /opt/app/index.js
-
-EXPOSE 8099
-
 CMD ["/usr/bin/nodejs", "index.js"]
 ```
 
@@ -27,6 +21,7 @@ Build command:
 ```
 docker build -t simple_node_app .
 ```
+
 ## Exercise: extract a new Node.js base image
 
 We want to define several service images based on Node.js. To prevent
@@ -47,13 +42,14 @@ create a new dir for example : custom_nodejs_base.
 Create a Dockerfile with the following content.
 
 ```
- FROM qwan/ubuntu_base
- MAINTAINER Vincent Mos
+FROM sogeti:5000/ubuntu
+MAINTAINER Sogeti Dev
 
- RUN apt-get update && apt-get install -y nodejs npm
+RUN apt-get update && apt-get install -y nodejs npm
 ```
 
 build the image :
+
 ```
 docker build -t node_base .
 ```
@@ -62,15 +58,10 @@ docker build -t node_base .
 
 ```
 FROM node_base
-MAINTAINER Vincent Mos
-
+MAINTAINER Sogeti Dev
 WORKDIR /opt/app
-
 ADD node_modules /opt/app/node_modules
 ADD index.js /opt/app/index.js
-
 EXPOSE 8099
-
 CMD ["/usr/bin/nodejs", "index.js"]
 ```
-
