@@ -1,0 +1,26 @@
+jenkins:
+  image: jenkins
+  ports:
+   - "127.0.0.1:8080:8080"
+   - "127.0.0.1:50000:5000"
+
+nexus:
+  image: sonatype/nexus:oss
+  ports:
+   - "127.0.0.1:8081:8081"
+
+sonar:
+  image: sonarqube
+  ports:
+   - "127.0.0.1:9000:9000"
+   - "127.0.0.1:9092:9092"
+  environment:
+   - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+  links:
+   - sonardb:db
+
+sonardb:
+  image: postgres
+  environment:
+   - POSTGRES_USER=sonar
+   - POSTGRES_PASSWORD=sonar
