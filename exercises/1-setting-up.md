@@ -1,51 +1,27 @@
+1 Setting up
 ---
-# Setting up
----
 
-It is advised to use our provided images, to let this
-hands on lab work smoothly as explained below.
+Run the 'Get Started' guide from <https://www.docker.com/> .
 
-We also provide USB sticks to copy the VirtualBox image and optionally install
-VirtualBox first.
 
-If you are for some reason unable to install either,
-please pair up with someone else, and try it later at home.
+## Under windows
 
-## Copy what you need 
+We will do this workshop using the Docker Quickstart Terminal.
 
-download:
-
-* VirtualBox (if needed)
-* Our HandsOnDeployment image
-
-## Install VirtualBox
-
-Install VirtualBox if you haven't got it installed on your laptop.
-
-* [Windows download](/materials/VirtualBox-4.3.18-96516-Win.exe)
-* [Mac OS X download](/materials/VirtualBox-4.3.18-96516-OSX.dmg)
-* [Linux all distributions download](/materials/VirtualBox-4.3.18-96516-Linux_amd64.run)
-
-Now download the [virtual box image](/materials/qwan-docker-lab_default_1415141114072_69666.ova)
-
-Then fire up the image: double clicking the image should import it in
-VirtualBox, where you can then start it.
-
-The image is a basic Linux image with some necessities installed and
-some configuration prepared. The installed packages are:
-
-* Docker (1.6.0)
-* Docker Compose (1.2.0)
+However, (for later, not now)
+if you want to run it from the standard command line, you can do this by following these steps:
+1. Make sure the Docker VM is running in VirtualBox
+2. On the command line, run
+``` FOR /f "tokens=*" %i IN ('docker-machine env') DO %i```
+3. Run ```docker run hello-world``` on the command-line to verify that it is working.
 
 
 
-### Configuration
+### Configuration on Windows
 
-- Username: maestro
-- Password: maestro
+Follow this you want to run anything that is accessible from the outside.
 
-
-**Configuring virtual box ssh:**
+**Configuring virtual box ports:**
  
 Settings > Network (NAT) > Configure ports >
 
@@ -53,16 +29,15 @@ Settings > Network (NAT) > Configure ports >
 - Name: ssh
 - Protocol: TCP
 - Host IP: 127.0.0.1
-- Host Port: 2222
+- Host Port: \<exposed port>
 - Guest Ip: 
-- Guest Port: 22
+- Guest Port: \<docker port>
 
-
-Now you can connect to the machine using a local ssh client (e.g. PuTTy), using
+Now you can connect to the machine at:
  
-    localhost:2222
+    localhost:\<exposed port>
 
 
 **Running vm in background**
 
-If you press left-shift while starting the vm, the vm will run headless. Great if you only want to interact with by using ssh.
+If you press left-shift while starting the vm, the vm will run headless.
