@@ -33,9 +33,19 @@ Settings > Network (NAT) > Configure ports >
 - Guest Ip: 
 - Guest Port: \<docker port>
 
+
+For http we will configure it as following : 
+
+- Name: ssh
+- Protocol: TCP
+- Host IP: 127.0.0.1
+- Host Port: 6680
+- Guest Ip: 
+- Guest Port: 80
+
 Now you can connect to the machine at:
  
-    localhost:\<exposed port>
+    localhost:6680
 
 
 **Running vm in background**
